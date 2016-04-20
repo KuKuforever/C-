@@ -153,7 +153,7 @@ const int Student::getIdNumber() const{
 }
 
 bool Student::operator == (const Student& a) {
-	bool result = false;
+bool result = false;
 	if (firstName.compare(a.getFirstName()) == 0 && lastName.compare(a.getLastName()) == 0 && (idNumber == a.getIdNumber())) {
 		result = true;
 	}
@@ -163,7 +163,7 @@ bool  Student::operator != (const Student& a) {
 	return !(*this == a);
 }
 bool  Student::operator > (const Student& a) {
-	bool result = false;
+bool result = false;
 	if (*this != a) {
 		if (isGreater(lastName, a.getLastName()) || (isEqual(lastName, a.getLastName()) && isGreater(firstName, a.getFirstName()))
 			|| (isEqual(lastName, a.getLastName()) && isEqual(firstName, a.getFirstName()) && idNumber > a.getIdNumber())) {
@@ -231,7 +231,7 @@ std::ostream& operator << (std::ostream& out, const Student& a) {
 }
 
 bool Student::isGreater(const string& name1, const string& name2) const {
-	bool result = false;
+bool result = false;
 	int length = name1.length();
 	if (name1.length() > name2.length()) {
 		length = name2.length();
@@ -253,7 +253,7 @@ bool Student::isGreater(const string& name1, const string& name2) const {
 }
 
 bool Student::isEqual(const string& name1, const string& name2) const {
-	bool result = true;
+bool result = true;
 	if (name1.length() != name2.length()) {
 		result = false;
 	}else{
