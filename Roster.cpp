@@ -18,19 +18,19 @@ void Roster::addStudent(const Student& a) {
 		studentList[enrolled] = a;
 		enrolled++;
 	}
-   sortStudent();
+        sortStudent();
 }
 
 
 const int Roster::searchStudent(string fName, string lName) const{
 int result = -1;
-   if(enrolled > 0){
-	   for(int i=0; i<enrolled; i++){
-		   if((fName.compare(studentList[i].getFirstName()) == 0) && (lName.compare(studentList[i].getLastName()) == 0))
-			   result = i;
+        if(enrolled > 0){
+	        for(int i=0; i<enrolled; i++){
+			if((fName.compare(studentList[i].getFirstName()) == 0) && (lName.compare(studentList[i].getLastName()) == 0))
+				result = i;
 	   }
-   }
-	return result;
+        }
+        return result;
 }
 
 
@@ -43,7 +43,6 @@ int position = searchStudent(fName, lName);
 
 	enrolled--;
 	cout << "student" <<fName << " " << lName << "has been deleted."<<endl;
-
 	}
 	else{
 		cout <<"This student does not exist." << endl;
@@ -52,39 +51,42 @@ int position = searchStudent(fName, lName);
 }
 
 Roster::Roster() {
-    size         = 10;
-	enrolled     = 0;
-	courseCode   = 0;
-	courseCredit = 0;
-	courseName   = " ";
-	instructor   = " ";  
-	studentList = new Student[size];
+        size         =  10;
+	enrolled     =  0;
+	courseCode   =  0;
+	courseCredit =  0;
+	courseName   =  " ";
+	instructor   =  " ";  
+	studentList  =  new Student[size];
 }
 
 Roster::Roster(int cCode, int cCredit, string cName, string prof, int classSize){
    
-   if((cCode < 0) || (cCredit < 0) || (classSize < 0)){
-      cout << "invalid entry." << endl;
-      exit(1);
+	if((cCode < 0) || (cCredit < 0) || (classSize < 0)){
+        	cout << "invalid entry." << endl;
+        	exit(1);
    }
       
-   enrolled     = 0;
-   courseCode   = cCode;
-   courseCredit = cCredit;
-   courseName   = cName;
-   instructor   = prof;
-   size         = classSize;
-   studentList  = new Student[size];
+   enrolled     =   0;
+   courseCode   =   cCode;
+   courseCredit =   cCredit;
+   courseName   =   cName;
+   instructor   =   prof;
+   size         =   classSize;
+   studentList  =   new Student[size];
    
 }
 
 Roster::Roster(const Roster & r){
-	Student* temp = studentList;
+Student* temp = NULL;
+	temp = studentList;
 	size = r.getSize();
 	studentList = new Student[size];
+	
 	for (int i = 0; i < size; i++) {
 		studentList[i] = r.getStudentList()[i];
 	}
+	
 	delete[] temp;
 	enrolled = r.getEnrolled();
 	courseCode = r.getCourseCode();
@@ -95,29 +97,28 @@ Roster::Roster(const Roster & r){
 }
    
 void Roster::setCourseCode(int cCode){
-   
-   if(cCode < 0){
-      cout << "invalid entry." << endl;
-      exit(1);
-   }
+	if(cCode < 0){
+        	cout << "invalid entry." << endl;
+        	exit(1);
+	}
       
-   courseCode = cCode;         
+   	courseCode = cCode;         
 }
    
 void Roster::setCourseCredit(int cCredit){
-   if(cCredit < 0){
-      cout << "invalid entry." << endl;
-      exit(1);
-   }
-   courseCredit = cCredit;
+   	if(cCredit < 0){
+      		cout << "invalid entry." << endl;
+      		exit(1);
+   	}
+   	courseCredit = cCredit;
 }
    
 void Roster::setCourseName(string cName){
-   courseName = cName;
+   	courseName = cName;
 }
    
 void Roster::setInstructor(string prof){
-   instructor = prof;
+   	instructor = prof;
 }
 
 const int Roster::getSize()const {
@@ -132,16 +133,16 @@ const int Roster::getEnrolled()const {
 	return enrolled;
 }
 const int Roster::getCourseCode()const {
-   return courseCode;
+   	return courseCode;
 }
 const int Roster::getCourseCredit()const {
-   return courseCredit;
+   	return courseCredit;
 }
 const string Roster::getCourseName()const {
-   return courseName;
+   	return courseName;
 }
 const string Roster::getInstructor()const {
-   return instructor;
+   	return instructor;
 }
 
 void Roster::display() const{
@@ -150,6 +151,7 @@ void Roster::display() const{
 	cout << "course credit: " << courseCredit << endl;
 	cout << "instructor: " << instructor << endl;
 	cout << "students enrolled: " << endl;
+	
 	for (int i = 0; i < enrolled; i++) {
 		cout << studentList[i].getFirstName() << " " << studentList[i].getLastName() << endl;
 	}
@@ -175,11 +177,12 @@ std::istream& operator >>(std::istream& in, Roster& r) {
 	in >> r.courseCredit;
 	cout << "Enter instructor's name: " << endl;
 	in >> r.instructor;
+	
 	return in;
 }
 
 void Roster::sortStudent() {
-	Student least;
+Student least;
 	if (enrolled > 1) {
 		for (int i = 0; i < enrolled-1; i++) {
 			least = studentList[i];
@@ -194,13 +197,15 @@ void Roster::sortStudent() {
 	}
 }
 void Roster::swap(Student& a, Student& b) {
-	Student temp = a;
-	a = b;
-	b = temp;
+Student temp =   a;
+	a    =   b;
+	b    =   temp;
 }
 
 void Roster::grow() {
-	Student* temp = studentList;
+Student* temp = NULL;
+
+	temp = studentList;
 	size = size * 2 + 1;
 	studentList = new Student[size];
 
@@ -211,18 +216,21 @@ void Roster::grow() {
 }
 
 Roster& Roster::operator = ( Roster& a) {
-	Student* temp = studentList;
-	size = a.getSize();
-	studentList = new Student[size];
+Student* temp = NULL;
+
+	temp         =   studentList;
+	size         =   a.getSize();
+	studentList  =   new Student[size];
+	
 	for (int i = 0; i < size; i++) {
 		studentList[i] = a[i];
 	}
 	delete[] temp;
-	enrolled     = a.getEnrolled();
-	courseCode   = a.getCourseCode();
-	courseCredit = a.getCourseCredit();
-	courseName   = a.getCourseName();
-	instructor   = a.getInstructor();
+	enrolled     =   a.getEnrolled();
+	courseCode   =   a.getCourseCode();
+	courseCredit =   a.getCourseCredit();
+	courseName   =   a.getCourseName();
+	instructor   =   a.getInstructor();
 
 	return *this;
 }
@@ -231,7 +239,7 @@ Roster& Roster::operator = ( Roster& a) {
 {
 	if (index < 0 || index > size) {
 		cout << "Invalid entry" << endl;
-		//exit(1);
+		exit(1);
 	}
 	return studentList[index];
 }
