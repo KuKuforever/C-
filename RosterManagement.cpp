@@ -13,10 +13,10 @@ using namespace std;
 
 RosterManagement::RosterManagement() {
 char input = 'z';
-	 taken = 0;
-	 size  = 10;
-	 rosterList = new Roster[size];
-	 readInData();
+taken = 0;
+size  = 10;
+	rosterList = new Roster[size];
+	readInData();
 	cout << "welcome to the roster management page." << endl;
 	cout << "enter A for Supervisor Mode," << endl
 		 << "enter B for User Mode," << endl
@@ -44,7 +44,7 @@ char input = 'z';
 	}
 }
 
-RosterManagement::RosterManagement(const RosterManagement & other){
+RosterManagement::RosterManagement(const RosterManagement & other) {
 	size = other.getSize();
 	taken = other.getTaken();
 	for (int i = 0; i < size; i++) {
@@ -52,7 +52,7 @@ RosterManagement::RosterManagement(const RosterManagement & other){
 	}
 }
 
-RosterManagement & RosterManagement::operator=(const RosterManagement & other){
+RosterManagement & RosterManagement::operator=(const RosterManagement & other) {
 	if (rosterList != NULL) {
 		delete [] rosterList;
 		rosterList = NULL;
@@ -72,13 +72,11 @@ RosterManagement::~RosterManagement() {
 	}
 }
 
-const int RosterManagement::getSize() const
-{
+const int RosterManagement::getSize() const {
 	return size;
 }
 
-const int RosterManagement::getTaken() const
-{
+const int RosterManagement::getTaken() const {
 	return taken;
 }
 
@@ -121,7 +119,7 @@ int supervisorMain = 0;
 	endRoster();
 }
 
-void RosterManagement::supervisorSub(){
+void RosterManagement::supervisorSub() {
 char input;
 int courseNumber;
 int index;
@@ -129,6 +127,7 @@ int studentIndex;
 Student a;
 string firstName;
 string lastName;
+
 	cout << "select your course by entering the course number." << endl;
 	cin >> courseNumber;
 	index = search(courseNumber);
